@@ -18,6 +18,11 @@ class ProductController extends Controller
         return view('shop', ['products' => $products]);
     }
 
+    public function addToCart($id)
+    {
+        Cart::add($id, $products[$id]->name, 1, $products[$id]->price);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

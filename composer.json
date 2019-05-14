@@ -11,6 +11,9 @@
         "php": "^7.1.3",
         "bumbummen99/shoppingcart": "^2.8",
         "fideloper/proxy": "^4.0",
+        "illuminate/events": "^5.8",
+        "illuminate/session": "^5.8",
+        "illuminate/support": "^5.8",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0"
     },

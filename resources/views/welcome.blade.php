@@ -83,7 +83,6 @@
                 <div class="title m-b-md">
                     The Background Webshop
                 </div>
-
             </div>
         </div>
     </body>
