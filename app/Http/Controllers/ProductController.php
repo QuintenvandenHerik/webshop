@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\product;
+use App\customClasses\Cart;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,7 +21,8 @@ class ProductController extends Controller
 
     public function addToCart($id)
     {
-        Cart::add($id, $products[$id]->name, 1, $products[$id]->price);
+        $cart = new Cart();
+        $card->add($id, 1); //$products[$id]->name, 1, $products[$id]->price);
     }
 
     /**

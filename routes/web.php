@@ -19,4 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/shop', 'ProductController@index')->name('shop');
-Route::get('/shop/addToCart', 'ProductController@addToCart')->name('shop');
+Route::get('/shop/addToCart/{id}', 'ProductController@addToCart')->name('shop.addToCart');
