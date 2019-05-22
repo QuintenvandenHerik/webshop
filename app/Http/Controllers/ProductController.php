@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    private $cart;
+
+    public function __construct() {
+        $this->cart = new Cart();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,13 +22,18 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(12);
-        return view('shop', ['products' => $products]);
+        $cartItems = $this->cart->getItems();
+
+        return view('shop', [
+            'products' => $products,
+            'cartItems' => $cartItems
+        ]);
     }
 
-    public function addToCart($id)
+    public function addToCart($productId)
     {
-        $cart = new Cart();
-        $card->add($id, 1); //$products[$id]->name, 1, $products[$id]->price);
+        $product = Product::where('id', $productId)->first();
+        $this->cart->Add($productId, 1, $product->name, $product->price);
     }
 
     /**

@@ -19,30 +19,31 @@
 
 @section('cart')
 <li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre onclick="">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
         My Cart <span class="caret"></span>
     </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">        
-        <?php foreach(Cart::content() as $row) :?>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+    <?php dd($cartItems); ?>        
+        @foreach($cartItems['items'] as $product)
             <div class="cartProduct">
-                <p><strong><?php echo $row->name; ?></strong></p>
-                <p><?php echo $row->qty?> × $<?php echo number_format($row->price, 2); ?></p>
+                <p><strong><?php dd($product); ?></strong></p>
+                <p><?php echo $product; ?> × $<?php echo number_format($product, 2); ?></p>
             </div>
-        <?php endforeach;?>
+        @endforeach
         <div>
             <p colspan="2">&nbsp;</p>
             <p>Subtotal</p>
-            <p><?php echo number_format(Cart::subtotal(), 2); ?></p>
+            <p><?php echo 'Subtotal'; ?></p>
         </div>
         <div>
             <p colspan="2">&nbsp;</p>
             <p>Tax</p>
-            <p><?php echo number_format(Cart::tax(), 2); ?></p>
+            <p><?php echo 'Tax'; ?></p>
         </div>
         <div>
             <p colspan="2">&nbsp;</p>
             <p>Total</p>
-            <p><?php echo number_format(Cart::total(), 2); ?></p>
+            <p><?php echo 'Total'; ?></p>
         </div>
     </div>
 </li>
