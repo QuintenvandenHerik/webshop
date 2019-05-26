@@ -33,7 +33,7 @@ class ProductController extends Controller
     public function addToCart($productId)
     {
         $product = Product::where('id', $productId)->first();
-        $this->cart->Add($productId, 1, $product->name, $product->price);
+        $this->cart->Add($productId, $product->name, $product->price);
     }
 
     /**

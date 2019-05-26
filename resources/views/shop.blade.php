@@ -22,12 +22,11 @@
     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
         My Cart <span class="caret"></span>
     </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-    <?php dd($cartItems); ?>        
-        @foreach($cartItems['items'] as $product)
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">       
+        @foreach($cartItems as $product)
             <div class="cartProduct">
-                <p><strong><?php dd($product); ?></strong></p>
-                <p><?php echo $product; ?> × $<?php echo number_format($product, 2); ?></p>
+                <p><strong><?php echo $product['name']; ?></strong></p>
+                <p><?php echo $product['quantity']; ?> × $<?php echo number_format($product['price'], 2); ?></p>
             </div>
         @endforeach
         <div>
