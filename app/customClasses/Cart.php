@@ -47,6 +47,7 @@ class Cart
         $subTotal = 0;
         $tax = 0;
         $total = 0;
+        if ( session()->get('cartItems') == null ) return 0;
         foreach(session()->get('cartItems') as $key=>$item) {
             $subTotal = $subTotal + ($item['price'] * $item['quantity']);
         }
