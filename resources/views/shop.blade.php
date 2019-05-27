@@ -28,23 +28,21 @@
         @foreach($cartItems as $product)
             <div class="cartProduct">
                 <p><strong><?php echo $product['name']; ?></strong></p>
-                <p><?php echo $product['quantity']; ?> × $<?php echo number_format($product['price'], 2); ?></p>
+                <p><?php echo $product['quantity']; ?> × €<?php echo number_format($product['price'], 2); ?></p>
             </div>
         @endforeach
-        <div>
+        <div class="cartProperties">
             <p colspan="2">&nbsp;</p>
             <p>Subtotal</p>
-            <p><?php echo 'Subtotal'; ?></p>
+            <p>€<?php echo number_format($totalPrice['subTotal'], 2);?></p>
         </div>
-        <div>
-            <p colspan="2">&nbsp;</p>
+        <div class="cartProperties">
             <p>Tax</p>
-            <p><?php echo 'Tax'; ?></p>
+            <p>€<?php echo number_format($totalPrice['tax'], 2);?></p>
         </div>
-        <div>
-            <p colspan="2">&nbsp;</p>
+        <div class="cartProperties">
             <p>Total</p>
-            <p><?php echo 'Total'; ?></p>
+            <p>€<?php echo number_format($totalPrice['total'], 2);?></p>
         </div>
     </div>
     @endif

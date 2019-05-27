@@ -18,13 +18,7 @@ class Cart
         if (! is_array($this->cartItems)) {
             $this->cartItems = array();
         }
-        // zoek of id al in sessie zit en zo ja, haal op
-        // tel quantity op bij bestaande hoeveelheid (als er al iets in de sessie stond)
-        // sla nieuwe hoeveelheid terug op in de sessie en in $this->cartItems   
-        // session('cartItems') = $cartItems;
-        // $item = [];
-        // $item[$productId] = ['quantity' => $quantity, 'name' => $name, 'price' => $price];
-        //array_merge($this->cartItems[$productId] = ['quantity' => 1, 'name' => $name, 'price' => $price]);
+
         if (array_key_exists($productId, $this->cartItems)) {
             $this->cartItems[$productId]['quantity'] ++;
         } else {
@@ -42,12 +36,23 @@ class Cart
         $count = 0;
         if ( session()->get('cartItems') == null ) return 0;
 
-        //dd(session()->get('cartItems'));
-
         foreach(session()->get('cartItems') as $key=>$item) {
             $count = $count + $item['quantity'];
         }
 
         return $count;
-   }
+    }
+
+    public function calculatePrice() {
+        $subTotal = 0;
+        $tax = 0;
+        $total = 0;
+        foreach(session()->get('cartItems') as $key=>$item) {
+            $subTotal = $subTotal + ($item['price'] * $item['quantity']);
+        }
+        $tax = $subTotal * 0.21;
+        $total = $subTotal + $tax;
+        return array('subTotal' => $subTotal, 'tax' => $tax, 'total' => $total);
+    }
 }
+

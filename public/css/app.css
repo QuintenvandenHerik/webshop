@@ -1,8 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
-.cartProduct p{
+.cartProduct p {
 	padding-left: 10px;
 	margin-bottom: 0rem;
+}
+
+.cartProperties p {
+	padding-left: 10px;
+	margin-bottom: 0rem;
+}
+
+.cartProperties {
+	margin-bottom: 1rem;
 }
 
 /*!

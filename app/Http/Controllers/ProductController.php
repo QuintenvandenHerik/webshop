@@ -24,11 +24,12 @@ class ProductController extends Controller
         $products = Product::paginate(12);
         $cartItems = $this->cart->getItems();
         $cartCount = $this->cart->getCount();
-
+        $totalPrice = $this->cart->calculatePrice();
         $data = [
             'products' => $products,
             'cartItems' => $cartItems,
-            'cartCount' => $cartCount
+            'cartCount' => $cartCount,
+            'totalPrice' => $totalPrice
         ];
 
         return view('shop', $data);
