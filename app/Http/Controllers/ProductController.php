@@ -23,17 +23,23 @@ class ProductController extends Controller
     {
         $products = Product::paginate(12);
         $cartItems = $this->cart->getItems();
+        $cartCount = $this->cart->getCount();
 
-        return view('shop', [
+        $data = [
             'products' => $products,
-            'cartItems' => $cartItems
-        ]);
+            'cartItems' => $cartItems,
+            'cartCount' => $cartCount
+        ];
+
+        return view('shop', $data);
     }
 
     public function addToCart($productId)
     {
         $product = Product::where('id', $productId)->first();
         $this->cart->Add($productId, $product->name, $product->price);
+
+        return redirect()->back();
     }
 
     /**

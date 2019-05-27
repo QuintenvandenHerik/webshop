@@ -11,6 +11,7 @@ class Cart
 
     public function __construct() {
         // haal eerder gekozen product ids uit de sessie op en bewaar in lokale array $cartItems
+        $this->cartItems = session('cartItems');
     }
 
     public function Add($productId, $name, $price) {
@@ -23,7 +24,13 @@ class Cart
         // session('cartItems') = $cartItems;
         // $item = [];
         // $item[$productId] = ['quantity' => $quantity, 'name' => $name, 'price' => $price];
-        array_merge($this->cartItems[$productId] = ['quantity' => 1, 'name' => $name, 'price' => $price]);
+        //array_merge($this->cartItems[$productId] = ['quantity' => 1, 'name' => $name, 'price' => $price]);
+        if (array_key_exists($productId, $this->cartItems)) {
+            $this->cartItems[$productId]['quantity'] ++;
+        } else {
+            $this->cartItems[$productId] = ['quantity' => 1, 'name' => $name, 'price' => $price];
+        }
+        
         session(['cartItems' => $this->cartItems]);
     }
 
@@ -31,7 +38,16 @@ class Cart
         return session()->get('cartItems');
     }
 
+    public function getCount() {
+        $count = 0;
+        if ( session()->get('cartItems') == null ) return 0;
 
+        //dd(session()->get('cartItems'));
 
+        foreach(session()->get('cartItems') as $key=>$item) {
+            $count = $count + $item['quantity'];
+        }
 
+        return $count;
+   }
 }

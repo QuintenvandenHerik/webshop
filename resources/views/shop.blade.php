@@ -19,10 +19,12 @@
 
 @section('cart')
 <li class="nav-item dropdown">
+     @if(isset($cartItems)) 
+    
     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        My Cart <span class="caret"></span>
+        My Cart ({{ $cartCount }}) <span class="caret"></span>
     </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">       
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">     
         @foreach($cartItems as $product)
             <div class="cartProduct">
                 <p><strong><?php echo $product['name']; ?></strong></p>
@@ -45,5 +47,7 @@
             <p><?php echo 'Total'; ?></p>
         </div>
     </div>
+    @endif
+    
 </li>
 @endsection
