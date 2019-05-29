@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/shop', 'ProductController@index')->name('shop');
 Route::get('/shop/addToCart/{id}', 'ProductController@addToCart')->name('shop.addToCart');
+Route::get('/cart', 'ProductController@cartIndex')->name('cart');
+Route::get('/cart/removeFromCart/{id}', 'ProductController@removeFromCart')->name('cart.destroy');

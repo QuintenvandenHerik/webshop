@@ -21,8 +21,8 @@
 <li class="nav-item dropdown">
      @if(isset($cartItems)) 
     
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        My Cart ({{ $cartCount }}) <span class="caret"></span>
+    <a id="navbarDropdown" class="nav-link" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        My Cart ({{ $cartCount }})<span class="glyphicon glyphicon-shopping-cart"></span>
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">     
         @foreach($cartItems as $product)
@@ -43,6 +43,9 @@
         <div class="cartProperties">
             <p>Total</p>
             <p>€<?php echo number_format($totalPrice['total'], 2);?></p>
+        </div>
+        <div class="cartButton">
+            <a class="btn btn-info" href="{{ route('cart') }}">Cart</a>
         </div>
     </div>
     @endif

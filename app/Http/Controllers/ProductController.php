@@ -35,10 +35,29 @@ class ProductController extends Controller
         return view('shop', $data);
     }
 
+    public function cartIndex()
+    {
+        $cartItems = $this->cart->getItems();
+        $totalPrice = $this->cart->calculatePrice();
+        $data = [
+            'cartItems' => $cartItems,  
+            'totalPrice' => $totalPrice
+        ];
+
+        return view('cart', $data);
+    }
+
     public function addToCart($productId)
     {
         $product = Product::where('id', $productId)->first();
         $this->cart->Add($productId, $product->name, $product->price);
+
+        return redirect()->back();
+    }
+
+    public function removeFromCart($productId)
+    {
+        $this->cart->destroy($productId);
 
         return redirect()->back();
     }

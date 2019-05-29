@@ -14,6 +14,12 @@
 	margin-bottom: 1rem;
 }
 
+.cartButton a {
+	margin-bottom: 0;
+	margin-left: 5%;
+	width: 90%;
+}
+
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors

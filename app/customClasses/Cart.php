@@ -55,5 +55,11 @@ class Cart
         $total = $subTotal + $tax;
         return array('subTotal' => $subTotal, 'tax' => $tax, 'total' => $total);
     }
+
+    public function destroy($productId) {
+        dd(key($this->cartItems[$productId]));
+        session(['cartItems' => $this->cartItems]);
+    }
 }
+
 
