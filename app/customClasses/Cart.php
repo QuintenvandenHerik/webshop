@@ -57,9 +57,12 @@ class Cart
     }
 
     public function destroy($productId) {
-        dd(key($this->cartItems[$productId]));
+        unset($this->cartItems[$productId]);
         session(['cartItems' => $this->cartItems]);
     }
+
+    public function edit($productId, $data) {
+        $this->cartItems[$productId]['quantity'] = (int)$data['quantity'];
+        session(['cartItems'=> $this->cartItems]);
+    }
 }
-
-

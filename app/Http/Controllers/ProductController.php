@@ -35,6 +35,22 @@ class ProductController extends Controller
         return view('shop', $data);
     }
 
+    public function changeCategory()
+    {
+        $products = Product::paginate(12);
+        $cartItems = $this->cart->getItems();
+        $cartCount = $this->cart->getCount();
+        $totalPrice = $this->cart->calculatePrice();
+        $data = [
+            'products' => $products,
+            'cartItems' => $cartItems,
+            'cartCount' => $cartCount,
+            'totalPrice' => $totalPrice
+        ];
+
+        return view('shop', $data);
+    }
+
     public function cartIndex()
     {
         $cartItems = $this->cart->getItems();
@@ -60,6 +76,16 @@ class ProductController extends Controller
         $this->cart->destroy($productId);
 
         return redirect()->back();
+    }
+
+    public function changeQuantity($productId)
+    {
+        if ($_POST['quantity'] > 0) {
+            $this->cart->edit($productId, $_POST);
+            return redirect()->back();
+        } else {
+            return redirect(route('cart.destroy', ['id' => $productId]));
+        }
     }
 
     /**

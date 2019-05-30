@@ -5,10 +5,19 @@
   width: 50%; text-align: center;">
         <h1>Products</h1>
         <div class="products">
+            <div align="center">
+                <a class="btn btn-default filter-button" href="{{route('shop')}}">All</a>
+                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Nature'])}}">Nature</a>
+                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Technology'])}}">Technology</a>
+                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Metal'])}}">Metal</a>
+                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Abstract'])}}">Abstract</a>
+                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Miscellaneous'])}}">Miscellaneous</a>
+            </div>
+            <br/>
             @foreach ($products as $product)
                 <a href="{{ route('shop.addToCart', ['id' => $product->id]) }}" class="product" style="margin: auto; width: 200px; height: 200px; text-align: center; border: black; border-style: solid; display: inline-block; margin: 10px; text-decoration: none; color: black;">
                     <p>{{ $product->name }} background</p>
-                    <img src="https://picsum.photos/id/{{ $product->id }}/194/125" style="width: 194px; height: 125px;"></img>
+                    <img src="image/background{{ $product->id }}.jpg" style="width: 194px; height: 125px;"></img>
                     <p>€{{ number_format($product->price, 2) }}</p>
                 </a>
             @endforeach

@@ -20,19 +20,24 @@
                     <tr>
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="https://picsum.photos/id/{{ $key }}/194/125" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="image/background{{ $key }}.jpg" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">{{$product['name']}}</a></h4>
                                 <h5 class="media-heading"> category <a href="#">Category</a></h5>
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="number" class="form-control" value="{{$product['quantity']}}">
+
+                        <form action="{{action('ProductController@changeQuantity', ['id' => $key])}}" method="post">
+                            @csrf
+                             <input type="number" class="form-control" name="quantity" value="{{$product['quantity']}}" min="0" onchange="this.form.submit()">
+                        </form>
+                        
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>€{{$product['price']}}</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>€{{$product['price'] * $product['quantity']}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>€<?php echo number_format($product['price'], 2);?></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>€<?php echo number_format($product['price'] * $product['quantity'], 2);?></strong></td>
                         <td class="col-sm-1 col-md-1">
-                        <a type="button" class="btn btn-danger" href="{{ route('cart.destroy', ['id' => $key]) }}">
+                        <a type="button" class="btn btn-danger" href="{{ route('cart.destroy', $key) }}">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </a></td>
                     </tr>
