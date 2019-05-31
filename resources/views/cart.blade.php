@@ -68,13 +68,13 @@
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <a type="button" class="btn btn-default" href="{{ route('shop') }}">
+                        <a type="button" class="btn btn-default" href="{{ route('shop', ['category' => 'all']) }}">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                         </a></td>
                         <td>
-                        <button type="button" class="btn btn-success">
+                        <a type="button" class="btn btn-success" href="{{ route('checkout') }}"w>
                             Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                        </a></td>
                     </tr>
                 </tbody>
             </table>

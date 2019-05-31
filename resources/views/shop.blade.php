@@ -6,18 +6,18 @@
         <h1>Products</h1>
         <div class="products">
             <div align="center">
-                <a class="btn btn-default filter-button" href="{{route('shop')}}">All</a>
-                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Nature'])}}">Nature</a>
-                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Technology'])}}">Technology</a>
-                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Metal'])}}">Metal</a>
-                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Abstract'])}}">Abstract</a>
-                <a class="btn btn-default filter-button" href="{{route('shop.category', ['category' => 'Miscellaneous'])}}">Miscellaneous</a>
+                <a class="btn btn-default filter-button" href="{{route('shop', ['category' => 'all'])}}">All</a>
+                <a class="btn btn-default filter-button" href="{{route('shop', ['category' => 'nature'])}}">Nature</a>
+                <a class="btn btn-default filter-button" href="{{route('shop', ['category' => 'technology'])}}">Technology</a>
+                <a class="btn btn-default filter-button" href="{{route('shop', ['category' => 'metal'])}}">Metal</a>
+                <a class="btn btn-default filter-button" href="{{route('shop', ['category' => 'abstract'])}}">Abstract</a>
+                <a class="btn btn-default filter-button" href="{{route('shop', ['category' => 'miscellaneous'])}}">Miscellaneous</a>
             </div>
             <br/>
             @foreach ($products as $product)
                 <a href="{{ route('shop.addToCart', ['id' => $product->id]) }}" class="product" style="margin: auto; width: 200px; height: 200px; text-align: center; border: black; border-style: solid; display: inline-block; margin: 10px; text-decoration: none; color: black;">
                     <p>{{ $product->name }} background</p>
-                    <img src="image/background{{ $product->id }}.jpg" style="width: 194px; height: 125px;"></img>
+                    <img src="http://webshop.local/image/background{{ $product->id }}.jpg" style="width: 194px; height: 125px;"></img>
                     <p>€{{ number_format($product->price, 2) }}</p>
                 </a>
             @endforeach

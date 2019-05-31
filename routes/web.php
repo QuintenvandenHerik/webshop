@@ -18,9 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/shop', 'ProductController@index')->name('shop');
-Route::get('/shop/category/{category}', 'ProductController@changeCategory')->name('shop.category');
+Route::get('/shop/{category}', 'ProductController@index')->name('shop');
 Route::get('/shop/addToCart/{id}', 'ProductController@addToCart')->name('shop.addToCart');
 Route::get('/cart', 'ProductController@cartIndex')->name('cart');
 Route::get('/cart/removeFromCart/{id}', 'ProductController@removeFromCart')->name('cart.destroy');
 Route::post('/cart/changeQuantity/{id}', 'ProductController@changeQuantity')->name('cart.quantity');
+Route::get('/checkout', 'ProductController@checkout')->name('checkout');
+Route::get('/checkout/order', 'ProductController@order')->name('checkout.order');

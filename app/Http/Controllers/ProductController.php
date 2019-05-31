@@ -19,9 +19,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($category)
     {
-        $products = Product::paginate(12);
+        if ($category == 'all') {
+            $products = Product::paginate(12);
+        } else {
+            $products = Product::where('category', '=', $category)->paginate(12);
+        }
         $cartItems = $this->cart->getItems();
         $cartCount = $this->cart->getCount();
         $totalPrice = $this->cart->calculatePrice();
@@ -29,23 +33,7 @@ class ProductController extends Controller
             'products' => $products,
             'cartItems' => $cartItems,
             'cartCount' => $cartCount,
-            'totalPrice' => $totalPrice
-        ];
-
-        return view('shop', $data);
-    }
-
-    public function changeCategory()
-    {
-        $products = Product::paginate(12);
-        $cartItems = $this->cart->getItems();
-        $cartCount = $this->cart->getCount();
-        $totalPrice = $this->cart->calculatePrice();
-        $data = [
-            'products' => $products,
-            'cartItems' => $cartItems,
-            'cartCount' => $cartCount,
-            'totalPrice' => $totalPrice
+            'totalPrice' => $totalPrice,
         ];
 
         return view('shop', $data);
@@ -86,6 +74,16 @@ class ProductController extends Controller
         } else {
             return redirect(route('cart.destroy', ['id' => $productId]));
         }
+    }
+
+    public function checkout()
+    {
+        return view('checkout');
+    }
+
+    public function order()
+    {
+        
     }
 
     /**
