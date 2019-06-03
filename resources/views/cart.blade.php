@@ -72,9 +72,10 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                         </a></td>
                         <td>
-                        <a type="button" class="btn btn-success" href="{{ route('checkout') }}"w>
+                        <a type="button" class="btn btn-success" href="{{ route('checkout') }}">
                             Checkout <span class="glyphicon glyphicon-play"></span>
-                        </a></td>
+                        </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

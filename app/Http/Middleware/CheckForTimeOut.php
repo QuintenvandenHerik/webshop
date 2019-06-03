@@ -13,14 +13,35 @@ class CheckForTimeOut
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        $time = date("H:i:s");
-        $endTimeHour = date('H') + 1;
-        $endTimeMinute = date('i') + 30;
-        $endTimeSecond = date('s') + 1;
-        $endTime = $endTimeHour . ':' . $endTimeMinute . ':' . $endTimeSecond;
-        if($time >= $endTime) {
+        $date_1 = session('date_1');
+        $date_2 = date('m/d/Y H:i:s', time());
+        if(!isset($date_1)) {
+            $date_1 = date('m/d/Y H:i:s', time());
+            session(['date_1' => $date_1]);   
+        }
+        $datetime1 = date_create($date_1);
+        $datetime2 = date_create($date_2);
+        
+        $interval = date_diff($datetime1, $datetime2);
+        
+        if(intval($interval->m) < 1 && intval($interval->d) < 1 && intval($interval->y) < 1) {
+            if (intval($interval->h) == 1 && intval($interval->i) < 15 || intval($interval->h) == 0) {
+                $date_1 = date('m/d/Y H:i:s', time());
+                session(['date_1' => $date_1]);
+                return $next($request);
+            } else {
+                session(['cartItems' => []]);
+                $date_1 = date('m/d/Y H:i:s', time());
+                session(['date_1' => $date_1]);
+                return $next($request);
+
+            }
+        } else {
+            session(['cartItems' => []]);
+            $date_1 = date('m/d/Y H:i:s', time());
+            session(['date_1' => $date_1]);
             return $next($request);
         }
     }

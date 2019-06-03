@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/shop/{category}', 'ProductController@index')->name('shop');
-Route::get('/shop/addToCart/{id}', 'ProductController@addToCart')->name('shop.addToCart');
+Route::get('/shop/product/{id}', 'ProductController@productIndex')->name('shop.product');
+Route::get('/shop/product/addToCart/{id}', 'ProductController@addToCart')->name('shop.addToCart');
 Route::get('/cart', 'ProductController@cartIndex')->name('cart');
 Route::get('/cart/removeFromCart/{id}', 'ProductController@removeFromCart')->name('cart.destroy');
 Route::post('/cart/changeQuantity/{id}', 'ProductController@changeQuantity')->name('cart.quantity');

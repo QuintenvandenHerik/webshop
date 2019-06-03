@@ -42,6 +42,16 @@ class ProductController extends Controller
         return view('shop', $data);
     }
 
+        public function productIndex($productId)
+    {
+        $product = Product::where('id', $productId)->first();
+        $data = [
+            'product' => $product,
+        ];
+
+        return view('product', $data);
+    }
+
     public function cartIndex()
     {
         $cartItems = $this->cart->getItems();
@@ -59,7 +69,7 @@ class ProductController extends Controller
         $product = Product::where('id', $productId)->first();
         $this->cart->Add($productId, $product->name, $product->price);
 
-        return redirect()->back();
+        return redirect(route('shop', ['category' => 'all']));
     }
 
     public function removeFromCart($productId)
@@ -89,11 +99,11 @@ class ProductController extends Controller
 
     public function ordersIndex()
     {
-        $order = Order::where('user_id', Auth::user()->id)->paginate(4);
+        $order = Order::where('user_id', Auth::user()->id)->get();
         $data= [
             'orders' => $order
         ];
-        
+
         return view('orders', $data);
     }
 

@@ -3,7 +3,7 @@
 @section('content')
     <div class="content" style="margin: auto;
   width: 50%; text-align: center;">
-        <h1>Products</h1>
+        <h1 style="margin-top: 10px;">Products</h1>
         <div class="products">
             <div align="center">
                 <a class="btn btn-default filter-button" href="{{route('shop', ['category' => 'all'])}}">All</a>
@@ -15,7 +15,7 @@
             </div>
             <br/>
             @foreach ($products as $product)
-                <a href="{{ route('shop.addToCart', ['id' => $product->id]) }}" class="product" style="margin: auto; width: 200px; height: 200px; text-align: center; border: black; border-style: solid; display: inline-block; margin: 10px; text-decoration: none; color: black;">
+                <a href="{{ route('shop.product', ['id' => $product->id]) }}" class="product" style="margin: auto; width: 200px; height: 200px; text-align: center; border: black; border-style: solid; display: inline-block; margin: 10px; text-decoration: none; color: black;">
                     <p>{{ $product->name }} background</p>
                     <img src="http://webshop.local/image/background{{ $product->id }}.jpg" style="width: 194px; height: 125px;"></img>
                     <p>€{{ number_format($product->price, 2) }}</p>
