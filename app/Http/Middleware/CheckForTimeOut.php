@@ -27,7 +27,7 @@ class CheckForTimeOut
         $interval = date_diff($datetime1, $datetime2);
         
         if(intval($interval->m) < 1 && intval($interval->d) < 1 && intval($interval->y) < 1) {
-            if (intval($interval->h) == 1 && intval($interval->i) < 15 || intval($interval->h) == 0) {
+            if (intval($interval->h) == 1 && intval($interval->i) < 30 || intval($interval->h) == 0) {
                 $date_1 = date('m/d/Y H:i:s', time());
                 session(['date_1' => $date_1]);
                 return $next($request);
