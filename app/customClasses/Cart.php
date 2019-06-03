@@ -4,6 +4,8 @@ namespace App\customClasses;
 
 
 use App\product;
+use App\Order;
+use Illuminate\Support\Facades\Auth;
 
 class Cart
 {
@@ -64,5 +66,18 @@ class Cart
     public function edit($productId, $data) {
         $this->cartItems[$productId]['quantity'] = (int)$data['quantity'];
         session(['cartItems'=> $this->cartItems]);
+    }
+
+    public function saveCart() {
+        $order = new Order;
+        $cartData = serialize ($this->cartItems);
+        $order->cart = $cartData;
+        $order->user_id = Auth::user()->id;
+        $order->save();
+    }
+
+    public function destroyCart() {
+        $this->cartItems = array();
+        session(['cartItems' => $this->cartItems]);
     }
 }

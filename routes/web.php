@@ -24,4 +24,4 @@ Route::get('/cart', 'ProductController@cartIndex')->name('cart');
 Route::get('/cart/removeFromCart/{id}', 'ProductController@removeFromCart')->name('cart.destroy');
 Route::post('/cart/changeQuantity/{id}', 'ProductController@changeQuantity')->name('cart.quantity');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
-Route::get('/checkout/order', 'ProductController@order')->name('checkout.order');
+Route::get('/orders', 'ProductController@ordersIndex')->name('orders');

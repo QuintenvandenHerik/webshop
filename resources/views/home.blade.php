@@ -17,6 +17,14 @@
                     You are logged in!
                 </div>
             </div>
+            <br>
+            <div class="card">
+                <div class="card-header">Orders</div>
+
+                <div class="card-body">
+                    <a href="{{ route('orders') }}">See All Current Orders</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

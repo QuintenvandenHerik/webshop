@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\product;
+use App\Order;
 use App\customClasses\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductController extends Controller
 {
@@ -78,12 +81,20 @@ class ProductController extends Controller
 
     public function checkout()
     {
-        return view('checkout');
+        $this->cart->saveCart();
+        $this->cart->destroyCart();
+
+        return view('home');
     }
 
-    public function order()
+    public function ordersIndex()
     {
+        $order = Order::where('user_id', Auth::user()->id)->paginate(4);
+        $data= [
+            'orders' => $order
+        ];
         
+        return view('orders', $data);
     }
 
     /**
